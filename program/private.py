@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from utils import format_number
 import time
-
+import json
 
 def check_order_status(client, order_id):
   order = client.private.get_order_by_id(order_id)
@@ -89,4 +89,10 @@ def close_orders(client):
                 True
             )
             close_orders.append(order)
+
+    bot_res = []
+    with open("bot_agents.json", "w") as f:
+        #converts into a json file, second param is the json file to receive the object
+        
+        json.dump(bot_res, f)
     return close_orders
