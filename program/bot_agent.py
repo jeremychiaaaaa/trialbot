@@ -2,7 +2,7 @@ from private import open_market_position, get_position_status
 from datetime import datetime, timedelta
 from pprint import pprint
 import time
-
+from messaging_bot import send_messages
 class Bot:
     def __init__(self,
     client,
@@ -159,13 +159,15 @@ class Bot:
             #if cannot cancel this order, need to send a message to the operator and need to kill the program
                 if cancel_coin1_order_status != 'FILLED':
                     print("Kill program")
+                    send_messages("INTERVENE.. UNABLE TO CLOSE ORDER FOR THE FIRST TRADED PAIR")
                     exit(1)
             except Exception as e:
                 self.order_dict["pair_status"] = 'FAILED'    
                 self.order_dict["comments"] = f"Failed to close trade {self.coin_1}: {e}"
                 print(f"Failed to close trade with {self.coin_1} : {e}")
+                send_messages("INTERVENE.. UNABLE TO CLOSE ORDER FOR THE FIRST TRADED PAIR")
                 exit(1)
-
+                
         
         #order2 success:
         else:

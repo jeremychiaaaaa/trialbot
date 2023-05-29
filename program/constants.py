@@ -4,12 +4,12 @@ from decouple import config
 #The file here will be the constants used during the creating of the bot
 
 #only need to do this once in a while (eg once a day --> control flow for fetching historical data)
-FIND_COINTEGRATED = False
+FIND_COINTEGRATED = True
 
-PLACE_TRADES = False
+PLACE_TRADES = True
 ABORT_ALL_POSITIONS = True
 #when to exit positions
-MANAGE_EXITS = False
+MANAGE_EXITS = True
 #time period
 RESOLUTION = "1HOUR"
 
@@ -36,3 +36,4 @@ DYDX_API_PASSPHRASE = config("DYDX_API_PASSPHRASE")
 HOST = API_HOST_GOERLI
 
 HTTP_PROVIDER = "https://eth-goerli.g.alchemy.com/v2/WIVt4hDtPNlP5sfjPh-rEk8zy_DFCVvW"
+
