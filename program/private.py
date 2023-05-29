@@ -14,6 +14,7 @@ def get_position_status(client, order_id):
     order = client.private.get_order_by_id(order_id)
     if order.data:
         if "order" in order.data.keys():
+            print(order.data["order"]["cancelReason"])
             return order.data["order"]["status"]
     return "FAILED"
 

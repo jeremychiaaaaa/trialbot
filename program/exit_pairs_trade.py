@@ -87,7 +87,7 @@ def exit_trade(client):
                     close_pair_position = True
 
             
-            if  close_pair_position:
+            if close_pair_position:
                 coin_1_new_side = "BUY" if coin_1_side == "SELL" else "SELL"
                 coin_2_new_side = "BUY" if coin_2_side == "SELL" else "SELL"
                 latest_coin_1_price = float(coin_1_price_series[-1])

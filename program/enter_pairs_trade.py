@@ -68,17 +68,21 @@ def place_trades(client):
                     coin2_base_price = format_number(coin2_base_price, coin2_tick_size)
                     failsafe_base_price = format_number(failsafe_base_price, coin1_tick_size)
                     
-                    coin1_size = 1 / float(coin1_base_price) * USD_PER_TRADE
-                    coin2_size = 1 / float(coin2_base_price) * USD_PER_TRADE
+                  
 
-                    for m in TOKEN_FACTOR_10:
-                        if coin_1 == m:
-                       
-                            coin1_size = float(int(coin1_size)/10 * 10)
-                        if coin_2 == m:
-                            coin2_size = float(int(coin2_size)/10 * 10)
-                   
+                    if float(coin1_base_price) < 0.1:
+                        print("here")
+                        coin1_size = round((1 / float(coin1_base_price) * USD_PER_TRADE) / 10) * 10
+                    else:
+                        coin1_size = 1 / float(coin1_base_price) * USD_PER_TRADE
+ 
+                    if float(coin2_base_price) < 0.1:
+                        coin2_size = round((1 / float(coin2_base_price) * USD_PER_TRADE) / 10) * 10
+                    else:
+                        coin2_size = 1 / float(coin2_base_price) * USD_PER_TRADE
 
+
+                    
 
 
                     print("here")
