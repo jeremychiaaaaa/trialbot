@@ -1,0 +1,8 @@
+{
+    "python.autoComplete.extraPaths": [
+        "./program"
+    ],
+    "cSpell.words": [
+        "dydx"
+    ]
+}
