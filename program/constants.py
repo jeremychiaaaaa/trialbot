@@ -4,21 +4,23 @@ from decouple import config
 #The file here will be the constants used during the creating of the bot
 
 #only need to do this once in a while (eg once a day --> control flow for fetching historical data)
-FIND_COINTEGRATED = True
-
+FIND_COINTEGRATED = False
+BACKTESTING = True
 PLACE_TRADES = True
-ABORT_ALL_POSITIONS = True
+ABORT_ALL_POSITIONS = False
 #when to exit positions
 MANAGE_EXITS = True
 #time period
-RESOLUTION = "1HOUR"
+RESOLUTION = "1DAY"
 
 #window for each calculation of the rolling average that will be used during z-score
 WINDOW = 21
+#setting exit zscore threshold to be 1.0 for backtesting
+ZSC0RE_EXIT_THRESHOLD = 1.0
 
 #threshold for opening a trade
 MAX_HALF_LIFE = 24
-ZSCORE_THRESH = 1.5
+ZSCORE_THRESH = 2.0
 USD_PER_TRADE = 100
 #min amount in account before the bot will execute any trade
 USD_MIN_COLLATERAL = 1800

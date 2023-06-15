@@ -12,7 +12,7 @@ import json
 
 def place_trades(client):
     #from the cointegratred data previoisly calculatd
-    df = pd.read_csv("cointegrated_pairs.csv")
+    df = pd.read_csv("filtered_cointegrated_pairs.csv")
     
     #get all markets
     markets = client.public.get_markets().data
@@ -38,6 +38,7 @@ def place_trades(client):
 
         if len(recent_data_coin1) > 0 and len(recent_data_coin1) == len(recent_data_coin2):
             spread = recent_data_coin1 - (recent_data_coin2 * hedge_ratio)
+            #returns a series of recent z_score based on the spread 
             z_score = calculate_zscore(spread).values.tolist()[-1]
             # check if z_score is within this threshold
             if abs(z_score) >= ZSCORE_THRESH:
@@ -85,7 +86,7 @@ def place_trades(client):
                     
 
 
-                    print("here")
+                    
                     coin1_step_size = markets["markets"][coin_1]["stepSize"]
                     coin2_step_size = markets["markets"][coin_2]["stepSize"]
 

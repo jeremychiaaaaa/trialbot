@@ -33,8 +33,8 @@ def get_prices(client, market):
         candles = client.public.get_candles(
             market=market,
             resolution=RESOLUTION,
-            from_iso=start_time,
-            to_iso=end_time,
+            #from_iso=start_time,
+            #to_iso=end_time,
             limit=100
         )
         for candle in candles.data["candles"]:
@@ -46,6 +46,7 @@ def get_prices(client, market):
     #this will arrange the data from old to new
     prices.reverse()
     return prices
+
 
 
 

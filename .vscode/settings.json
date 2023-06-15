@@ -4,5 +4,8 @@
     ],
     "cSpell.words": [
         "dydx"
+    ],
+    "python.analysis.extraPaths": [
+        "./program"
     ]
 }

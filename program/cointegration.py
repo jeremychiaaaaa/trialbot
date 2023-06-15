@@ -23,7 +23,7 @@ def calculate_half_life(spread):
 
 #calculate zscore using spread
 def calculate_zscore(spread_series):
-    #need the mean, median, current
+    #need the mean, median, current of the spread
     spread_series = pd.Series(spread_series)
     mean = spread_series.rolling(center=False, window=WINDOW).mean()
     std = spread_series.rolling(center=False, window=WINDOW).std()
@@ -73,7 +73,8 @@ def store_cointegration_results(data):
                 "series_1": market,
                 "series_2": market_2,
                 "hedge_ratio":hedge_ratio,
-                "half_life": half_life
+                "half_life": half_life,
+                'trading_pair':f"{series_1}-{series_2}"
                })
             
             
