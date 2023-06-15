@@ -13,7 +13,7 @@ if __name__ == '__main__':
   
     
     # send a message when bot starts
-    #send_messages("Launching Bot")
+    send_messages("Launching Bot")
     try:
         client = connect_dydx()
     except Exception as e:
