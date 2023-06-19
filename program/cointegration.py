@@ -74,7 +74,7 @@ def store_cointegration_results(data):
                 "series_2": market_2,
                 "hedge_ratio":hedge_ratio,
                 "half_life": half_life,
-                'trading_pair':f"{series_1}-{series_2}"
+                'trading_pair':f"{market}-{market_2}"
                })
             
             

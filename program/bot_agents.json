@@ -1,1 +1,1 @@
-[{"coin_1": "ETC-USD", "coin_2": "UNI-USD", "hedge_ratio": 3.545329975, "z_score": -2.714924081857543, "half_life": 20, "coin_1_orderId": "2fe8fd03a69e6507540a6fb690e0a26489c087d33d2ce6718fa0667b5f2e5e2", "coin_2_orderId": "7f44d1e31afdb742a351eca46dff5b0f654dde937e42ca828827791abb6e8f4", "coin_1_side": "BUY", "coin_2_side": "SELL", "coin_1_size": "6.7", "coin_2_size": "22.6", "coin_1_orderTime": "2023-06-15T14:32:11.587447", "coin_2_orderTime": "2023-06-15T14:32:27.666822", "pair_status": "LIVE", "comments": "success pair trading"}]
+[]

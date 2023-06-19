@@ -24,9 +24,8 @@ def get_data_backtest(client):
     # will test the pair of XTZ-USD AND BTC-USD PAIR first 
     #subsequently once code written, will run for all cointegrated pairs in the excel file
     
-    btc_prices = get_prices(client, 'BTC-USD')
-    xtz_prices = get_prices(client, 'XTZ-USD')
-    cointegrated_pairs_df = pd.read_csv("cointegrated_pairs_new.csv")
+   
+    cointegrated_pairs_df = pd.read_csv("cointegrated_pairs.csv")
     #will use yfinance to get financial data for each coin in the cointegrated excel file
     #pandas-datareader allows us to import in the data as a pandas dataframe
 

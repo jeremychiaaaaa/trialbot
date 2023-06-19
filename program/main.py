@@ -12,6 +12,8 @@ from back_testing import get_data_backtest
 if __name__ == '__main__':
   
     
+    # every week the bot will run this script to check on the cointegration data and backtest it
+    # after that it will run as usual and check if there is an opening to close or open any trade 
     # send a message when bot starts
     send_messages("Launching Bot")
     try:

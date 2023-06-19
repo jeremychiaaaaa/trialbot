@@ -33,8 +33,8 @@ def get_prices(client, market):
         candles = client.public.get_candles(
             market=market,
             resolution=RESOLUTION,
-            #from_iso=start_time,
-            #to_iso=end_time,
+            from_iso=start_time,
+            to_iso=end_time,
             limit=100
         )
         for candle in candles.data["candles"]:
@@ -56,15 +56,15 @@ def get_data(client):
     # need to get all the markets and check if thehy are available and tradeable and then store the historical prices in a pandas df using the get_prices function above
     tradeable_markets = []
     all_markets = client.public.get_markets()
-
+    print(all_markets)
     for market in all_markets.data["markets"].keys():
         market_info = all_markets.data["markets"][market]
         if market_info["status"] == "ONLINE" and market_info["type"] == "PERPETUAL":
             tradeable_markets.append(market)
-    
+    print(tradeable_markets)
     #initial dataframe
     client_data = get_prices(client, tradeable_markets[0])
-
+    print(client_data)
     df = pd.DataFrame(client_data)
     df.set_index("datetime", inplace=True)
 
@@ -85,5 +85,5 @@ def get_data(client):
     if len(nans) > 0:
         print("Removing NA columns")
         df.drop(columns=nans, inplace=True)
-   
+    print(df)
     return df

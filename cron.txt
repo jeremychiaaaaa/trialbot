@@ -2,13 +2,7 @@ crontab -e
 
 CRON item - Daily
 
-* * * * * /bin/timeout -s 2 86330 python3 dydx_bot/program/main.py > output.txt  2>&1
+0 12 * * 1  python3 trial_bot/program/main.py > output.txt  2>&1
 
-CRON item - 5 Mins
-
-#first part gives the duration in this case 5 min_order_size_coin1
-"/bin/timeout -s 2 290" means to kill the program after 290s 
-
-*/5 * * * * /bin/timeout -s 2 290 python3 dydx_bot/program/main.py > output.txt  2>&1
 
 crontab -l
