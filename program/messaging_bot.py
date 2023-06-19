@@ -15,6 +15,7 @@ def send_messages(message):
 
 # function to send file
 def send_file(file):
+    send_messages("Generating weekly report...")
     date_now = datetime.now()
     date_one_week_before = (date_now - timedelta(weeks=1))
     file.to_csv(f'weekly report from {date_one_week_before} to {date_now}.csv')

@@ -66,7 +66,7 @@ if __name__ == '__main__':
                 exit(1)
         
     #make sure that the bot is always on
-    while False:
+    while True:
         if MANAGE_EXITS:
             try:
                 print("Possibly Closing trades")
