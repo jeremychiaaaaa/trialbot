@@ -177,9 +177,9 @@ def get_data_backtest(client):
     new_cointegrated_data = cointegrated_pairs_df[cointegrated_pairs_df['trading_pair'].isin(filtered_names)]
 
     new_cointegrated_data.to_csv('filtered_cointegrated_pairs.csv')
-    new_filtered_portfolio.groupby('trading_pair')['returns'].plot(legend=True, y='Returns')
-    plt.show()
-    plt.close()
+    #new_filtered_portfolio.groupby('trading_pair')['returns'].plot(legend=True, y='Returns')
+    #plt.show()
+    #plt.close()
     print(filtered_df.info())
     print(portfolio.info())
     print(new_cointegrated_data)

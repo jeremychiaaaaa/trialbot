@@ -40,6 +40,7 @@ def exit_trade(client):
     # loop through each open position in the dictionary and perform checks 
     for position in open_positions_dict:
         #close trigger
+        #for testing can set this to true
         close_pair_position = False
         coin_1 = position['coin_1']
         coin_2 = position['coin_2']
@@ -100,6 +101,12 @@ def exit_trade(client):
                 coin2_base_price = format_number(coin2_base_price, coin2_tick_size)
 
                 try:
+                    # before closing the order, get the pnl
+                    for m in platform_data_positions:
+                        if(m["market"] == coin_1):
+                            position["coin_1_realized_pnl"] = m["unrealizedPnl"]
+                        if(m["market"] == coin_2):
+                            position["coin_2_realized_pnl"] = m["unrealizedPnl"]
                     coin_1_close_order = open_market_position(
                         client,
                         coin_1,
@@ -120,6 +127,10 @@ def exit_trade(client):
 
                     )
                     print(f"Closing order with {coin_2}")    
+                    #if successfully closed position, add back to the json file but add the 'pair status column' as 'CLOSED'
+                    position['pair_status'] = 'CLOSED'
+                    position['date_closed'] = coin_2_close_order['order']['createdAt']
+                    new_positions_output.append(position)
                 except Exception as e:
                     print(f"Failed to exit position with {coin_1} and {coin_2}")
                     new_positions_output.append(position)

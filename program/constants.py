@@ -26,10 +26,10 @@ ZSC0RE_EXIT_THRESHOLD = 1.0
 
 #threshold for opening a trade
 MAX_HALF_LIFE = 24
-ZSCORE_THRESH = 2.0
+ZSCORE_THRESH = 1.5
 USD_PER_TRADE = 100
 #min amount in account before the bot will execute any trade
-USD_MIN_COLLATERAL = 1800
+USD_MIN_COLLATERAL = 100
 CLOSE_AT_ZSCORE_CROSS = True
 
 TOKEN_FACTOR_10 = ["XLM-USD","DOGE-USD","TRX-USD"]

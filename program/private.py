@@ -50,7 +50,7 @@ def open_market_position(client, market, side, size, price, reduce_only):
     time_in_force="FOK",
     reduce_only = reduce_only
     )
-
+    
     return placed_order.data
 
 

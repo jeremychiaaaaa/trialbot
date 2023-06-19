@@ -50,7 +50,10 @@ class Bot:
             "coin_2_orderTime":"",
             #based on pair_status
             "pair_status":"",
-            "comments":""
+            "comments":"",
+            "date_closed":"",
+            "coin_1_realized_pnl":"",
+            "coin_2_realized_pnl":"",
 
         }
     

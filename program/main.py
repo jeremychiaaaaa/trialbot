@@ -1,13 +1,15 @@
 
 from connections import connect_dydx
 from constants import ABORT_ALL_POSITIONS, FIND_COINTEGRATED, PLACE_TRADES, MANAGE_EXITS, BACKTESTING
-from private import close_orders
+from private import close_orders, open_market_position
 from public import get_data
 from cointegration import store_cointegration_results
 from enter_pairs_trade import place_trades
 from exit_pairs_trade import exit_trade
-from messaging_bot import send_messages
+from messaging_bot import send_messages, send_file
 from back_testing import get_data_backtest
+
+
 
 if __name__ == '__main__':
   
@@ -15,9 +17,12 @@ if __name__ == '__main__':
     # every week the bot will run this script to check on the cointegration data and backtest it
     # after that it will run as usual and check if there is an opening to close or open any trade 
     # send a message when bot starts
+    
     send_messages("Launching Bot")
+    
     try:
         client = connect_dydx()
+        
     except Exception as e:
      
         print("Error connecting to client: ", e)
@@ -61,7 +66,7 @@ if __name__ == '__main__':
                 exit(1)
         
     #make sure that the bot is always on
-    while True:
+    while False:
         if MANAGE_EXITS:
             try:
                 print("Possibly Closing trades")

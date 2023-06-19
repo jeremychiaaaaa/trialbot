@@ -12,7 +12,7 @@ import json
 
 def place_trades(client):
     #from the cointegratred data previoisly calculatd
-    df = pd.read_csv("filtered_cointegrated_pairs.csv")
+    df = pd.read_csv("cointegrated_pairs.csv")
     
     #get all markets
     markets = client.public.get_markets().data
@@ -127,7 +127,7 @@ def place_trades(client):
                             half_life
                         )
 
-                        #open trades
+                        #open trades method
                         bot_open_dict = bot_agent.open_trades()
                  
                         if bot_open_dict["pair_status"] == "LIVE":
