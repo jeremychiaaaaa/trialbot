@@ -97,3 +97,30 @@ def close_orders(client):
         
         json.dump(bot_res, f)
     return close_orders
+
+
+
+#function to close one side of the pairs trade when there is an error
+def open_market_position_2(client, market, side, size, price):
+    account_response = client.private.get_account()
+    position_id = account_response.data["account"]["positionId"]
+
+
+    #place order
+    placed_order = client.private.create_order(
+    position_id=position_id, # required for creating the order signature
+    market=market,
+    side=side,
+    order_type="LIMIT",
+    post_only=False,
+    size=size,
+    # this price here refers to the worst acceptable price
+    #the worst acceptable price for long order is higher than the current price
+    price=price,
+    limit_fee='0.015',
+    # allow the order to take 2 minutes
+    expiration_epoch_seconds=time.time() + 120,
+    time_in_force="GTT",
+    )
+    
+    return placed_order.data

@@ -130,10 +130,16 @@ def place_trades(client):
                         #open trades method
                         bot_open_dict = bot_agent.open_trades()
                  
+
+                    # either try and see if there is no bug by deleting that particular pair from the csv
+                    # add all dicts and then after that filter those only with pair status live before dumping into json file
+
                         if bot_open_dict["pair_status"] == "LIVE":
                             bot_res.append(bot_open_dict)
                             del(bot_open_dict)
                             print("LIVE")
+                        else:
+                            continue
 
     print(f"Success: {len(bot_res)} pairs now trading")
     print(bot_res)

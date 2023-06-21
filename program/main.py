@@ -38,6 +38,8 @@ if __name__ == '__main__':
              #send_messages(f"Error closing orders, {e}")
             exit(1)
 
+
+
     if FIND_COINTEGRATED:
         try:
             print("GETTING MARKET DATA")

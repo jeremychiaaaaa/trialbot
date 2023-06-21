@@ -1,6 +1,7 @@
 import requests
 from decouple import config
 from datetime import datetime, timedelta
+import pandas as pd
 
 # function to send message
 def send_messages(message):
@@ -18,6 +19,7 @@ def send_file(file):
     send_messages("Generating weekly report...")
     date_now = datetime.now()
     date_one_week_before = (date_now - timedelta(weeks=1))
+    file = pd.DataFrame(file)
     file.to_csv(f'weekly report from {date_one_week_before} to {date_now}.csv')
     bot_token = config("TELEGRAM_TOKEN")
     chat_id = config("TELEGRAM_CHAT_ID")

@@ -161,7 +161,7 @@ def get_data_backtest(client):
     
     # taking the first 10 here
     overall.sort_values(by=['net_returns'], inplace=True, ascending=False)
-    filtered_df = overall.iloc[0:5]
+    filtered_df = overall.iloc[0:10]
     filtered_df['trading_pair'] = filtered_df['trading_pair'].astype('string')
     filtered_names = [] 
     for index, row in (filtered_df.iterrows()):

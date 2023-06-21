@@ -2,7 +2,9 @@ import json
 from connections import connect_dydx
 import pandas as pd
 from datetime import datetime, timedelta
-from messaging_bot import send_file
+from messaging_bot import send_file, send_messages
+import requests
+from decouple import config
 
 def generate_report(client):
     weekly_report_list = []
@@ -32,9 +34,9 @@ def generate_report(client):
         coin_1 = position['coin_1']
         coin_2 = position['coin_2']
 
-        coin_1_realized_pnl = (float(position['coin_1_realized_pnl']))
+        coin_1_realized_pnl = (float(position['coin_1_realized_pnl'])) if position['coin_1_realized_pnl'] != '' else 0
         #print(float(position['coin_1_realized_pnl']))
-        coin_2_realized_pnl = (float(position['coin_2_realized_pnl']))
+        coin_2_realized_pnl = (float(position['coin_2_realized_pnl'])) if position['coin_2_realized_pnl'] != '' else 0
         coin_1_pnl = 0
         coin_2_pnl = 0
         for m in platform_data_positions:
@@ -59,11 +61,25 @@ def generate_report(client):
 
     
     weekly_report_df = pd.DataFrame(weekly_report_list)
-    
     print(weekly_report_df)
+    send_messages("Generating weekly report...")
+    date_now = datetime.now()
+    date_one_week_before = (date_now - timedelta(weeks=1))
+    weekly_report_df.to_csv(f'weekly report from {date_one_week_before} to {date_now}.csv')
+    bot_token = config("TELEGRAM_TOKEN")
+    chat_id = config("TELEGRAM_CHAT_ID")
+    send_document = 'https://api.telegram.org/bot' + bot_token +'/sendDocument?'
+    data = {
+     'chat_id': chat_id,
+     'parse_mode':'HTML',
+     'caption':'Weekly report'
+    }
+    r = requests.post(send_document, data=data, 
+    files={'document': open(f'weekly report from {date_one_week_before} to {date_now}.csv','rb')}, stream=True)
+    send_messages(f"Overall pnl for the week from {date_one_week_before} to {date_now}: {round(sum(weekly_report_df['overall_pnl']), 2)}")
     return weekly_report_df
 
 if __name__ == '__main__':
     client = connect_dydx()
     report = generate_report(client)
-    send_file(report)
+    
