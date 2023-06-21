@@ -1,6 +1,7 @@
 from constants import ZSCORE_THRESH, USD_MIN_COLLATERAL, USD_PER_TRADE, TOKEN_FACTOR_10, ZSC0RE_EXIT_THRESHOLD
 from public import get_prices
 import matplotlib.pyplot as plt
+from connections import connect_dydx
 from private import check_if_any_open_positions
 from utils import format_number
 from bot_agent import Bot
@@ -161,7 +162,7 @@ def get_data_backtest(client):
     
     # taking the first 10 here
     overall.sort_values(by=['net_returns'], inplace=True, ascending=False)
-    filtered_df = overall.iloc[0:10]
+    filtered_df = overall.iloc[0:30]
     filtered_df['trading_pair'] = filtered_df['trading_pair'].astype('string')
     filtered_names = [] 
     for index, row in (filtered_df.iterrows()):
@@ -185,3 +186,14 @@ def get_data_backtest(client):
     print(new_cointegrated_data)
     
     return "saved"
+
+if __name__ == '__main__':
+    try:
+        client = connect_dydx()
+        data = get_data_backtest(client)
+    except Exception as e:
+        print("Error getting backtesting data: ", e)
+        #send_messages(f"Error getting backtesting data, {e}")
+        exit(1)
+        
+    

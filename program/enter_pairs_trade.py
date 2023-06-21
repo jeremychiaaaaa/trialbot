@@ -12,7 +12,7 @@ import json
 
 def place_trades(client):
     #from the cointegratred data previoisly calculatd
-    df = pd.read_csv("cointegrated_pairs.csv")
+    df = pd.read_csv("filtered_cointegrated_pairs.csv")
     
     #get all markets
     markets = client.public.get_markets().data
