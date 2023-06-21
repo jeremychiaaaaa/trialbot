@@ -6,6 +6,7 @@ from public import get_data
 #the coint library here most importantl\y has a p-val;ue for the hypothesis test where the null hypothesis is that the 2 variables are not cointegrated
 from statsmodels.tsa.stattools import coint
 from constants import MAX_HALF_LIFE, WINDOW
+from messaging_bot import send_messages
 
 #idea to calculate half life is to using calculate the linear regression between the spread returns and the lagged version of the spread and using that beta value pass it to a formula to calculate the half-life
 
@@ -100,6 +101,7 @@ if __name__ == '__main__':
     try:
         print("Storing cointegration data")
         #cointegrated pairs data
+        send_messages('got data for cointegration')
         res = store_cointegration_results(data)
         if res != "saved":
             print("Error saving cointegrated results: ")
