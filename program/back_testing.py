@@ -18,7 +18,7 @@ import os
 #the coint library here most importantl\y has a p-val;ue for the hypothesis test where the null hypothesis is that the 2 variables are not cointegrated
 from statsmodels.regression.rolling import RollingOLS
 from datetime import datetime, timedelta
-from messaging_bot import send_messages
+
 
 yf.pdr_override()
 
@@ -188,14 +188,5 @@ def get_data_backtest(client):
     
     return "saved"
 
-if __name__ == '__main__':
-    try:
-        client = connect_dydx()
-        data = get_data_backtest(client)
-        send_messages('backtested')
-    except Exception as e:
-        print("Error getting backtesting data: ", e)
-        #send_messages(f"Error getting backtesting data, {e}")
-        exit(1)
-        
+
     

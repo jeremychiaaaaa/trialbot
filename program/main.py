@@ -16,6 +16,7 @@ if __name__ == '__main__':
     
     # every week the bot will run this script to check on the cointegration data and backtest it
     # after that it will run as usual and check if there is an opening to close or open any trade 
+    
     # send a message when bot starts
     
     send_messages("Launching Bot")
@@ -37,6 +38,35 @@ if __name__ == '__main__':
             print("Error closing orders: ", e)
              #send_messages(f"Error closing orders, {e}")
             exit(1)
+
+    if FIND_COINTEGRATED:
+        try:
+            print("GETTING MARKET DATA")
+            data = get_data(client)
+        except Exception as e:
+            print("Error getting orders: ", e)
+            #send_messages(f"Error getting market data to find cointegrated pairs, {e}")
+            exit(1)
+        try:
+            print("Storing cointegration data")
+            #cointegrated pairs data
+            res = store_cointegration_results(data)
+            send_messages('got cointegration results')
+            if res != "saved":
+                print("Error saving cointegrated results: ")
+        except Exception as e:
+            print("Error saving cointegrated results: ", e)
+             #send_messages(f"Error saving cointegrated results {e}")
+            exit(1)
+    if BACKTESTING:
+            try:
+                print("Closing all orders")
+                data = get_data_backtest(client)
+                send_messages('backtested')
+            except Exception as e:
+                print("Error getting backtesting data: ", e)
+                #send_messages(f"Error getting backtesting data, {e}")
+                exit(1)
         
     #make sure that the bot is always on
     while True:

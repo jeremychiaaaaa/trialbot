@@ -4,10 +4,10 @@ from decouple import config
 #The file here will be the constants used during the creating of the bot
 
 #only need to do this once in a while (eg once a day --> control flow for fetching historical data)
-FIND_COINTEGRATED = False
+FIND_COINTEGRATED = True
 
 #run once every week
-BACKTESTING = False
+BACKTESTING = True
 
 PLACE_TRADES = True
 # abort all positions is a constant to facilitate testing during development
