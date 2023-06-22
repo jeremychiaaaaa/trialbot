@@ -12,6 +12,7 @@ import json
 
 def place_trades(client):
     #from the cointegratred data previoisly calculatd
+    # took the top 30
     df = pd.read_csv("filtered_cointegrated_pairs.csv")
     
     #get all markets
